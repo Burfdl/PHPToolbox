@@ -1,15 +1,4 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of HTTP
- *
- * @author godfred7
- */
 class Burfdl_Stream_Reader_HTTP extends Burfdl_Stream_Reader_Abstract {
 	private $url = null;
 	private $body = null;
@@ -34,7 +23,8 @@ class Burfdl_Stream_Reader_HTTP extends Burfdl_Stream_Reader_Abstract {
 	}
 	
 	public function current() {
-		return $this->body[$this->index];
+		$body = $this->getBody();
+		return $body[$this->index];
 	}
 	
 	public function key() {
@@ -50,10 +40,9 @@ class Burfdl_Stream_Reader_HTTP extends Burfdl_Stream_Reader_Abstract {
 	}
 	
 	public function valid() {
-		return isset($this->body[$this->index]);
+		$body = $this->getBody();
+		return isset($body[$this->index]);
 	}
 	
 	
 }
-
-?>
