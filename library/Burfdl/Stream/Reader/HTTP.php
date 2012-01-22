@@ -13,7 +13,7 @@
 class Burfdl_Stream_Reader_HTTP extends Burfdl_Stream_Reader_Abstract {
 	private $url = null;
 	private $body = null;
-	private $index = null;
+	private $index = 0;
 	
 	public function __construct($url) {
 		$this->url = $url;
@@ -31,6 +31,26 @@ class Burfdl_Stream_Reader_HTTP extends Burfdl_Stream_Reader_Abstract {
 		$ch = curl_init($this->url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		return curl_exec($ch);
+	}
+	
+	public function current() {
+		return $this->body[$this->index];
+	}
+	
+	public function key() {
+		return $this->index;
+	}
+	
+	public function next() {
+		$this->index += 1;
+	}
+	
+	public function rewind() {
+		$this->index = 0;
+	}
+	
+	public function valid() {
+		return isset($this->body[$this->index]);
 	}
 	
 	
