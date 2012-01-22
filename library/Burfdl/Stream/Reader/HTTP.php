@@ -1,5 +1,8 @@
 <?php
-class Burfdl_Stream_Reader_HTTP extends Burfdl_Stream_Reader_Abstract {
+class Burfdl_Stream_Reader_HTTP 
+	extends Burfdl_Stream_Reader_Abstract 
+{
+	
 	private $url = null;
 	private $body = null;
 	private $index = 0;
@@ -43,6 +46,5 @@ class Burfdl_Stream_Reader_HTTP extends Burfdl_Stream_Reader_Abstract {
 		$body = $this->getBody();
 		return isset($body[$this->index]);
 	}
-	
 	
 }
