@@ -17,13 +17,15 @@ class Burfdl_Stream_Writer_File extends Burfdl_Stream_Writer_Abstract {
 	
 	public function __construct($filename) {
 		if (
-			!file_exists($filename) 
-			|| !is_writable($filename) 
+			(
+				file_exists($filename) 
+				&& !is_writable($filename) 
+			)
 			|| !is_writable(dirname($filename))
 		) {
 			throw new Exception("File or folder is not writable");
 		}
-		$handle = fopen($filename, "w");
+		$this->handle = fopen($filename, "w");
 	}
 	
 	public function write_one($string) {
