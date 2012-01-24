@@ -12,12 +12,24 @@
  */
 class Burfdl_Array extends ArrayObject {
 	
-	public function __construct($array) {
+	public function __construct($array = array()) {
 		parent::__construct($array);
 	}
-	
+
 	public function __clone() {
-		$return = new Burfdl_Array($this);
+		return new Burfdl_Array($this);
+	}
+	
+	public function collect($keys) {
+		return new Burfdl_Array(Burfdl_Array_Toolbox::collect($this, $keys));
+	}
+	
+	public static function manufacture($array) {
+		return new Burfdl_Array($array);
+	}
+	
+	public function remove_duplicates() {
+		return new Burfdl_Array(Burfdl_Array_Toolbox::remove_duplicates($this));
 	}
 	
 	public function and_keys($array) {
@@ -64,6 +76,16 @@ class Burfdl_Array extends ArrayObject {
 	
 	public function rotate() {
 		return new Burfdl_Array(Burfdl_Array_Toolbox::rotateArray($this));
+	}
+	
+	public function sort_values() {
+		$this->asort();
+		return $this;
+	}
+	
+	public function sort_keys() {
+		$this->ksort();
+		return $this;
 	}
 	
 	public function toArray() {
