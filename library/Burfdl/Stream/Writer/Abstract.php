@@ -42,7 +42,7 @@ abstract class Burfdl_Stream_Writer_Abstract {
 	 * or when the PHP script finishes). 
 	 * Closes the writer.
 	 */
-	private function __destruct() {
+	public function __destruct() {
 		$this->close();
 	}
 	
